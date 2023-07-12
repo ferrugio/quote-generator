@@ -14,7 +14,7 @@ function newQuote(quotes) {
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
   // Check if Author field is blank and replace it with 'Unknown'
-  quoteAuthore.textContent = !quote.author ? "Unknown" : quote.author;
+  quoteAuthor.textContent = !quote.author ? "Unknown" : quote.author;
 
   // Check quote lenght to determine styling
   if (quote.text.length > 50) {
@@ -60,4 +60,3 @@ btnTwitter.addEventListener("click", tweetQuote);
 
 //on load
 getQuotes(apiQuoteUrl);
-//if (apiQuotes.length !== 0) newQuote(apiQuotes);
