@@ -4,46 +4,43 @@ const quoteAuthor = document.getElementById("author");
 const btnTwitter = document.getElementById("twitter");
 const btnNewQuote = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
+const quoteIcon = document.querySelector("fa-quote-left");
+
+const proxyUrl = "https://cors-anymwere.herokuapp.com/";
 
 const apiQuoteUrl = "https:jacintodesign.github.io/quotes-api/data/quotes.json";
 
+/* const apiQuoteUrl_02 =
+  "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json"; */
+
 let apiQuotes = [];
 
-//Show loading
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-//hide loading
-function loadComplete() {
+function hideLoadingSpinner() {
   loader.hidden = true;
   quoteContainer.hidden = false;
 }
 
 // Show new quote
 function newQuote(quotes) {
-  loading();
+  showLoadingSpinner();
   // pick a random quote from quotes array
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
   // Check if Author field is blank and replace it with 'Unknown'
   quoteAuthor.textContent = !quote.author ? "Unknown" : quote.author;
 
-  // Check quote lenght to determine styling
-  if (quote.text.length > 50) {
-    quoteText.classList.add("long-quote");
-  } else {
-    quoteText.classList.remove("long-quote");
-  }
-  //set quote hide loader
   quoteText.textContent = quote.text;
-  loadComplete();
+  hideLoadingSpinner();
 }
 
 // Get Quotes from API
 async function getQuotes(api_url) {
-  loading();
+  showLoadingSpinner();
   try {
     const response = await fetch(api_url);
     apiQuotes = await response.json();

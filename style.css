@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
 
+:root {
+  /* https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/ */
+  --calculated-font-size: clamp(
+    16px,
+    calc(16px + (28 - 16) * ((100vw - 360px) / 1560)),
+    28px
+  );
+}
+
 html {
   box-sizing: border-box;
 }
@@ -28,7 +37,7 @@ body {
 }
 
 .quote-text {
-  font-size: 2.75rem;
+  font-size: var(--calculated-font-size);
   font-weight: bold;
 }
 
@@ -37,7 +46,7 @@ body {
 }
 
 .fa-quote-left {
-  font-size: 4rem;
+  font-size: var(--calculated-font-size);
 }
 
 .quote-author:before {
@@ -50,7 +59,7 @@ body {
 
 .quote-author {
   margin-top: 15px;
-  font-size: 2rem;
+  font-size: var(--calculated-font-size);
   font-weight: 400;
   font-style: italic;
   color: #e5f1a4;
@@ -96,6 +105,7 @@ button:active {
 .fa-twitter {
   font-size: 1.5rem;
 }
+
 /* loader */
 .loader {
   border: 16px solid rgba(216, 250, 8, 0.8);
@@ -119,9 +129,5 @@ button:active {
 @media screen and (max-width: 1000px) {
   .quote-container {
     margin: auto 10px;
-  }
-
-  .quote-text {
-    font-size: 2.5rem;
   }
 }
